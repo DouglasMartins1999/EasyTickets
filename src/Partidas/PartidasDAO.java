@@ -111,7 +111,7 @@ public class PartidasDAO {
             ResultSet r = this.stmCreate.getGeneratedKeys();
             r.next();
             
-            int id = r.getInt("id");
+            int id = r.getInt(1);
             p.setCod(id);
             
             return p;
