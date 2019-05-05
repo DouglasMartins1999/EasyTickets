@@ -1,33 +1,156 @@
-Wed May 01 12:46:54 BRT 2019 : Apache Derby Servidor de Rede - 10.13.1.1 - (Unversioned directory) iniciado e pronto para aceitar conex�es na porta 1527 em {3}
+Sat May 04 19:09:59 BRT 2019 : Apache Derby Servidor de Rede - 10.13.1.1 - (Unversioned directory) iniciado e pronto para aceitar conexões na porta 1527 em {3}
 ----------------------------------------------------------------
-Wed May 01 12:47:00 BRT 2019:
- Inicializando o Derby vers�o The Apache Software Foundation - Apache Derby - 10.13.1.1 - (Unversioned directory): inst�ncia a816c00e-016a-7413-b476-ffffad0dafe7
-no diret�rio de banco de dados C:\Users\dougl\Documents\NetBeansProjects\EasyTickets\db\easyticket-db 
+Sat May 04 19:10:02 BRT 2019:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.13.1.1 - (Unversioned directory): instância a816c00e-016a-84e5-95a1-ffffbdb6f535
+no diretório de banco de dados /home/douglas/Documents/Projects/Mackenzie/EasyTickets/db/easyticket-db 
 
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_181-b13
-user.dir=C:\Program Files (x86)\glassfish\javadb
-os.name=Windows 10
+java.runtime.version=1.8.0_111-b14
+user.dir=/home/douglas/Documents/Others/javadb
+os.name=Linux
 os.arch=amd64
-os.version=10.0
-derby.system.home=C:\Users\dougl\Documents\NetBeansProjects\EasyTickets\db
+os.version=4.15.0-29deepin-generic
+derby.system.home=/home/douglas/Documents/Projects/Mackenzie/EasyTickets/db
 Carregador de classe do banco de dados iniciado - derby.database.classpath=''
+Sat May 04 19:10:03 BRT 2019 Thread[DRDAConnThread_2,5,main] (XID = 335), (SESSIONID = 0), (DATABASE = easyticket-db), (DRDAID = {1}), Cleanup action starting
+java.sql.SQLNonTransientConnectionException: Ocorreu uma falha de autenticação da conexão.  Motivo: Autenticação inválida..
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.checkUserCredentials(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
+	at org.apache.derby.impl.drda.Database.makeConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.getConnFromDatabaseName(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.verifyUserIdPassword(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseSECCHK(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
+Caused by: ERROR 08004: Ocorreu uma falha de autenticação da conexão.  Motivo: Autenticação inválida..
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	... 21 more
+============= begin nested exception, level (1) ===========
+ERROR 08004: Ocorreu uma falha de autenticação da conexão.  Motivo: Autenticação inválida..
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.checkUserCredentials(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
+	at org.apache.derby.impl.drda.Database.makeConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.getConnFromDatabaseName(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.verifyUserIdPassword(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseSECCHK(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
+============= end nested exception, level (1) ===========
+Cleanup action completed
+Sat May 04 19:10:03 BRT 2019 Thread[DRDAConnThread_2,5,main] (DATABASE = easyticket-db), (DRDAID = {1}), Ocorreu uma falha de autenticação da conexão.  Motivo: Autenticação inválida..
+Sat May 04 19:10:15 BRT 2019 Thread[DRDAConnThread_2,5,main] (XID = 336), (SESSIONID = 1), (DATABASE = easyticket-db), (DRDAID = {2}), Cleanup action starting
+java.sql.SQLNonTransientConnectionException: Ocorreu uma falha de autenticação da conexão.  Motivo: Autenticação inválida..
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.checkUserCredentials(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
+	at org.apache.derby.impl.drda.Database.makeConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.getConnFromDatabaseName(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.verifyUserIdPassword(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseSECCHK(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
+Caused by: ERROR 08004: Ocorreu uma falha de autenticação da conexão.  Motivo: Autenticação inválida..
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	... 21 more
+============= begin nested exception, level (1) ===========
+ERROR 08004: Ocorreu uma falha de autenticação da conexão.  Motivo: Autenticação inválida..
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.checkUserCredentials(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
+	at org.apache.derby.impl.drda.Database.makeConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.getConnFromDatabaseName(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.verifyUserIdPassword(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseSECCHK(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
+============= end nested exception, level (1) ===========
+Cleanup action completed
+Sat May 04 19:10:15 BRT 2019 Thread[DRDAConnThread_2,5,main] (DATABASE = easyticket-db), (DRDAID = {2}), Ocorreu uma falha de autenticação da conexão.  Motivo: Autenticação inválida..
 ----------------------------------------------------------------
-Wed May 01 12:47:07 BRT 2019:
-Encerrando a inst�ncia a816c00e-016a-7413-b476-ffffad0dafe7
-Wed May 01 12:47:10 BRT 2019 Thread[DRDAConnThread_3,5,main] (DATABASE = easyticket-db), (DRDAID = {2}), Banco de dados 'easyticket-db' fechado.
-----------------------------------------------------------------
-Wed May 01 12:48:32 BRT 2019:
- Inicializando o Derby vers�o The Apache Software Foundation - Apache Derby - 10.13.1.1 - (Unversioned directory): inst�ncia 6ede40af-016a-7413-b476-ffffad0dafe7
-no diret�rio de banco de dados C:\Users\dougl\Documents\NetBeansProjects\EasyTickets\db\easyticket-db 
+Sat May 04 19:10:28 BRT 2019:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.13.1.1 - (Unversioned directory): instância 601a400f-016a-84e5-95a1-ffffbdb6f535
+no diretório de banco de dados /home/douglas/Documents/Projects/Mackenzie/EasyTickets/db/easyticket 
 
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_181-b13
-user.dir=C:\Program Files (x86)\glassfish\javadb
-os.name=Windows 10
+java.runtime.version=1.8.0_111-b14
+user.dir=/home/douglas/Documents/Others/javadb
+os.name=Linux
 os.arch=amd64
-os.version=10.0
-derby.system.home=C:\Users\dougl\Documents\NetBeansProjects\EasyTickets\db
+os.version=4.15.0-29deepin-generic
+derby.system.home=/home/douglas/Documents/Projects/Mackenzie/EasyTickets/db
 Carregador de classe do banco de dados iniciado - derby.database.classpath=''
 ----------------------------------------------------------------
-Wed May 01 13:21:10 BRT 2019: Shutting down Derby engine
+Sat May 04 19:10:31 BRT 2019:
+Encerrando a instância 601a400f-016a-84e5-95a1-ffffbdb6f535
+Sat May 04 19:10:31 BRT 2019 Thread[DRDAConnThread_3,5,main] (DATABASE = easyticket), (DRDAID = {4}), Banco de dados 'easyticket' fechado.
+----------------------------------------------------------------
+Sat May 04 19:10:33 BRT 2019:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.13.1.1 - (Unversioned directory): instância 070a00b0-016a-84e5-95a1-ffffbdb6f535
+no diretório de banco de dados /home/douglas/Documents/Projects/Mackenzie/EasyTickets/db/easyticket 
+
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_111-b14
+user.dir=/home/douglas/Documents/Others/javadb
+os.name=Linux
+os.arch=amd64
+os.version=4.15.0-29deepin-generic
+derby.system.home=/home/douglas/Documents/Projects/Mackenzie/EasyTickets/db
+Carregador de classe do banco de dados iniciado - derby.database.classpath=''
+----------------------------------------------------------------
+Sat May 04 22:21:47 BRT 2019: Shutting down Derby engine

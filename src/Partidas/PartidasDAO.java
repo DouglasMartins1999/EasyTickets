@@ -17,7 +17,7 @@ public class PartidasDAO {
     public PartidasDAO(){
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
-            String url = "jdbc:derby//localhost:1527/easyticket-db";
+            String url = "jdbc:derby://localhost:1527/easyticket";
             String user = "root";
             String pswd = "1234";
             
@@ -25,13 +25,14 @@ public class PartidasDAO {
             
             this.stmCreate = this.conn.prepareStatement("INSERT INTO Partidas (campeonato, estadio, nome_mandante, nome_visitante, placar_mandante, placar_visitante, datetime, peso) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             this.stmReadAll = this.conn.prepareStatement("SELECT * FROM Partidas");
-            this.stmReadOne = this.conn.prepareStatement("SELECT * FROM Partidas WHERE ? = ?");
+            this.stmReadOne = this.conn.prepareStatement("SELECT * FROM Partidas WHERE id = ?");
             this.stmUpdateAll = this.conn.prepareStatement("UPDATE Partidas SET nome_mandante=?, nome_visitante=?, placar_mandante=?, placar_visitante=?, estadio=?, campeonato=?, datetime=?, peso=? WHERE id=?");
             this.stmUpdateScore = this.conn.prepareStatement("UPDATE Partidas SET placar_mandante=?, placar_visitante=? WHERE id=?");
             this.stmDelete = this.conn.prepareStatement("DELETE FROM Partidas WHERE id=?");
             
         } catch(Exception e){
             System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
         }
     }
     
@@ -40,6 +41,7 @@ public class PartidasDAO {
             this.conn.close();
         } catch(Exception e){
             System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
         }
     }
     
@@ -58,7 +60,7 @@ public class PartidasDAO {
                 p.setPlacarVisitante(r.getInt("placar_visitante"));
                 p.setEstadio(r.getString("estadio"));
                 p.setCampeonato(r.getString("campeonato"));
-                p.setData(r.getInt("datetime"));
+                p.setData(r.getLong("datetime"));
                 p.setPeso(r.getDouble("peso"));
                 
                 partidas.add(p);
@@ -67,6 +69,7 @@ public class PartidasDAO {
             return partidas;
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
         }
         return null;
     }
@@ -86,25 +89,27 @@ public class PartidasDAO {
             p.setPlacarVisitante(r.getInt("placar_visitante"));
             p.setEstadio(r.getString("estadio"));
             p.setCampeonato(r.getString("campeonato"));
-            p.setData(r.getInt("datetime"));
+            p.setData(r.getLong("datetime"));
             p.setPeso(r.getDouble("peso"));
             
             return p;
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
         }
         return null;
     }
     
     public Partida create(Partida p){
         try {
+            System.out.println(p.toString());
             this.stmCreate.setString(1, p.getCampeonato());
             this.stmCreate.setString(2, p.getEstadio());
             this.stmCreate.setString(3, p.getNomeMandante());
             this.stmCreate.setString(4, p.getNomeVisitante());
             this.stmCreate.setInt(5, p.getPlacarMandante());
             this.stmCreate.setInt(6, p.getPlacarVisitante());
-            this.stmCreate.setInt(7, p.getData());
+            this.stmCreate.setLong(7, p.getData());
             this.stmCreate.setDouble(8, p.getPeso());
             
             this.stmCreate.executeUpdate();
@@ -117,6 +122,7 @@ public class PartidasDAO {
             return p;
         } catch(Exception e){
             System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
         }
         return null;
     }
@@ -129,7 +135,7 @@ public class PartidasDAO {
             this.stmUpdateAll.setInt(4, p.getPlacarVisitante());
             this.stmUpdateAll.setString(5, p.getEstadio());
             this.stmUpdateAll.setString(6, p.getCampeonato());
-            this.stmUpdateAll.setInt(7, p.getData());
+            this.stmUpdateAll.setLong(7, p.getData());
             this.stmUpdateAll.setDouble(8, p.getPeso());
             this.stmUpdateAll.setInt(9, id);
             
@@ -138,6 +144,7 @@ public class PartidasDAO {
             
         } catch(Exception e){
             System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
         }
         return 0;
     }
@@ -152,6 +159,7 @@ public class PartidasDAO {
             return changed;
         } catch(Exception e){
             System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
         }
         return 0;
     }
@@ -164,6 +172,7 @@ public class PartidasDAO {
             
         } catch (Exception e){
             System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
         }
         return 0;
     }

@@ -3,7 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/dougl/Documents/NetBeansProjects/EasyTickets/src/easytickets/EasyTickets.java</file>
+            <file>file:/home/douglas/Documents/Projects/Mackenzie/EasyTickets/src/easytickets/EasyTickets.java</file>
+            <file>file:/home/douglas/Documents/Projects/Mackenzie/EasyTickets/src/Ingressos/IngressoDAO.java</file>
+            <file>file:/home/douglas/Documents/Projects/Mackenzie/EasyTickets/src/Partidas/Partida.java</file>
+            <file>file:/home/douglas/Documents/Projects/Mackenzie/EasyTickets/src/Ingressos/IngressoResource.java</file>
+            <file>file:/home/douglas/Documents/Projects/Mackenzie/EasyTickets/src/Ingressos/Ingresso.java</file>
+            <file>file:/home/douglas/Documents/Projects/Mackenzie/EasyTickets/src/Partidas/PartidasResource.java</file>
+            <file>file:/home/douglas/Documents/Projects/Mackenzie/EasyTickets/src/Partidas/PartidasDAO.java</file>
         </group>
     </open-files>
 </project-private>

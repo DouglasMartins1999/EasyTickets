@@ -8,12 +8,12 @@ public class Partida {
     private String nomeVisitante;
     private int placarMandante;
     private int placarVisitante;
-    private int data;
+    private long data;
     private double peso;
     
     public Partida(){};
     
-    public Partida(String nM, String nV, int pM, int pV, String c, String e, int d, double p){
+    public Partida(String nM, String nV, int pM, int pV, String c, String e, long d, double p){
         this.campeonato = c;
         this.estadio = e;
         this.nomeMandante = nM;
@@ -24,7 +24,7 @@ public class Partida {
         this.peso = p;
     }
     
-    public Partida(String nM, String nV, String c, String e, int d, double p){
+    public Partida(String nM, String nV, String c, String e, long d, double p){
         this.campeonato = c;
         this.estadio = e;
         this.nomeMandante = nM;
@@ -42,7 +42,7 @@ public class Partida {
     public String getNomeVisitante(){ return nomeVisitante; }
     public int getPlacarMandante(){ return placarMandante; }
     public int getPlacarVisitante(){ return placarVisitante; }
-    public int getData(){ return data; }
+    public long getData(){ return data; }
     public double getPeso(){ return peso; }
     
     public void setCod(int cod){ this.cod = cod; }
@@ -52,7 +52,7 @@ public class Partida {
     public void setNomeVisitante(String n){ this.nomeVisitante = n; }
     public void setPlacarMandante(int p){ this.placarMandante = p; }
     public void setPlacarVisitante(int p){ this.placarVisitante = p; }
-    public void setData(int d){ this.data = d; }
+    public void setData(long d){ this.data = d; }
     public void setPeso(double p){ this.peso = p; }
     
     @Override

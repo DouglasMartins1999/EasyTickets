@@ -16,7 +16,7 @@ public class IngressoDAO {
     public IngressoDAO(){
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
-            String url = "jdbc:derby//localhost:1527/easyticket-db";
+            String url = "jdbc:derby://localhost:1527/easyticket";
             String user = "root";
             String pswd = "1234";
             
@@ -28,6 +28,7 @@ public class IngressoDAO {
             
         } catch(Exception e){
             System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
         }
     }
     
@@ -36,6 +37,7 @@ public class IngressoDAO {
             this.conn.close();
         } catch(Exception e){
             System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
         }
     }
     
@@ -55,6 +57,7 @@ public class IngressoDAO {
             return i;
         } catch(Exception e){
             System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
         }
         return null;
     }
@@ -84,6 +87,7 @@ public class IngressoDAO {
             
         } catch(Exception e){
             System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
         }
         return null;
     }
@@ -103,6 +107,7 @@ public class IngressoDAO {
             return i;
         } catch(Exception e){
             System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
         }
         return null;
     }
