@@ -1,0 +1,98 @@
+.page-content {
+    display: flex;
+    height: 100vh;
+}
+
+.page-content main {
+    background: #FBFBFB;
+    padding: 60px;
+    width: 100%;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.content-header h1 {
+    margin: 0;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.content-header span {
+    font-size: 15px;
+    color: #444444;
+}
+
+button {
+    background: #3665FF;
+    border-radius: 5px;
+    border: 0;
+    color: #FFF;
+    font-family: 'Catamaran';
+    font-size: 16px;
+    font-weight: 600;
+    padding: 6px 20px;
+    transition: all ease-in-out 200ms;
+}
+
+button:hover {
+    background: rgba(54, 101, 255, 0.75);
+}
+
+.content-data table {
+    background: #FFF;
+    width: 100%;
+    box-shadow: 2px 2px 15px 0px rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
+    border-radius: 5px;
+    margin: 40px 0;
+}
+
+th {
+    background: rgba(235, 235, 235, 0.3);
+    font-size: 14px;
+    font-weight: 400;
+    color: #717171;
+    border: 0;
+    text-align: left;
+    height: 35px;
+}
+
+th:first-child,
+td:first-child {
+    width: 60px;
+    text-align: center;
+
+}
+
+th:last-child
+td:last-child {
+    width: 110px;
+    /* padding: 0 20px; */
+}
+
+td {
+    height: 45px;
+    font-size: 16px;
+    color: #444;
+}
+
+
+tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05)
+}
+
+tr:first-child,
+tr:last-child {
+    border: 0;
+}
+
+.actions {
+    display: flex;
+    width: 60px;
+    justify-content: space-between;
+}
