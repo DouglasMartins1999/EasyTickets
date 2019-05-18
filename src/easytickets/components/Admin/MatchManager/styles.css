@@ -1,0 +1,25 @@
+#formmanager { 
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 15px;  
+    margin-bottom: 35px; 
+}
+
+#formmanager input,
+#formmanager select {
+    width: 100%;
+    box-sizing: border-box;
+    height: 30px;
+}
+
+#formmanager label {
+    font-size: 14px;
+    color: #444;
+}
+
+.modal-title {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 20px;
+}

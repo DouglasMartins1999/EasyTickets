@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import icons from '../../../assets/images/index';
-import "../styles.css"
 import SideMenu from '../../../components/Admin/SideMenu';
+import "../styles.css"
 
 class MatchesPage extends Component {
     constructor(props){
         super(props);
 
-        this.state = {
-        }
+        this.state = {}
         this.tableLayout = ["ID", "Mandante vs Visitante", "Placar", "Data e Hora", "Estádio", "Campeonato", "Peso", "Ações"]
 
     }
@@ -18,7 +17,7 @@ class MatchesPage extends Component {
             <main>
                 <header class="content-header">
                     <div>
-                        <h1>Gerenciar Jogos</h1>
+                        <h1 className="title">Gerenciar Jogos</h1>
                         <span>Visualizar, Inserir, Atualizar e Remover jogos para compra de ingressos</span>
                     </div>
                     <button>Inserir Partida</button>

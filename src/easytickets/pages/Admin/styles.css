@@ -16,8 +16,9 @@
     width: 100%;
 }
 
-.content-header h1 {
+.title {
     margin: 0;
+    font-size: 36px;
     font-weight: 600;
     line-height: 1;
 }
@@ -36,6 +37,7 @@ button {
     font-size: 16px;
     font-weight: 600;
     padding: 6px 20px;
+    cursor: pointer;
     transition: all ease-in-out 200ms;
 }
 
@@ -95,4 +97,8 @@ tr:last-child {
     display: flex;
     width: 60px;
     justify-content: space-between;
+}
+
+.actions img {
+    cursor: pointer;
 }
