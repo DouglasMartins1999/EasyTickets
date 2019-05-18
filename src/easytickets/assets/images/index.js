@@ -9,7 +9,9 @@ const images = {
     ticket: require("./ticket.svg"),
 
     edit: require("./edit.svg"),
-    delete: require("./delete.svg")
+    delete: require("./delete.svg"),
+
+    loading: require("./loading.gif")
 }
 
 export default images;
