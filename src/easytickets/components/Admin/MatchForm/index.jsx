@@ -3,7 +3,7 @@ import Request from '../../../utils/request'
 import images from '../../../assets/images';
 import "./styles.css";
 
-class MatchManager extends Component {
+class MatchForm extends Component {
     constructor(props){
         super(props);
 
@@ -112,4 +112,4 @@ class MatchManager extends Component {
     }
 }
 
-export default MatchManager;
+export default MatchForm;
