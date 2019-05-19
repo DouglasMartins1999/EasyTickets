@@ -1,0 +1,112 @@
+.card {
+    width: 100%;
+    max-width: 350px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.05);
+    transition: all ease-in-out 250ms;
+    transform: rotateY(0deg);
+}
+
+.rotate {
+    transform: rotateY(90deg);
+}
+
+.match-info {
+    padding: 30px;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.match-info > span {
+    font-size: 11px;
+    color: #555;
+    text-transform: uppercase;
+}
+
+.teams-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.teams-info h2 {
+    margin: 0;
+    text-transform: uppercase;
+    color: #111;
+    white-space: nowrap;
+    height: 42px;
+    font-size: 28px;
+}
+
+.teams-info span {
+    width: 32px;
+    height: 32px;
+    color: #FFF;
+    background: #5D42B5;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    font-weight: 500;
+}
+
+.ticket-info {
+    background: #5D42B5;
+    color: #FFF;
+    border-radius: 0 0 5px 5px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 30px;
+    padding: 0 10px;
+}
+
+.ticket-info a {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.sit-picker {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 3px;
+    margin-top: 15px;
+}
+
+.sit-number {
+    width: 27px;
+    height: 27px;
+    background: #f4f4f4;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #555;
+    cursor: pointer;
+    padding: 0;
+    font-weight: normal;
+}
+
+.sit-number:hover {
+    color: #FFF;
+}
+
+.sit-number:active,
+.sit-number:focus {
+    background: #5D42B5;
+    color: #FFF;
+}
+
+.sit-picker .inactive {
+    color: #ccc;
+    background: #f7f7f7;
+    cursor: not-allowed;
+}
