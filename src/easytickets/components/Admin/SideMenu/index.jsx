@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import icons from '../../../assets/images/index';
 import "./styles.css"
 import date from '../../../utils/date';
@@ -20,13 +22,14 @@ class SideMenu extends Component {
     }
     render(){
         const { nextState } = this.state;
+        console.log(this.props);
         return <aside>
             <img src={icons.logo} className="logo" alt="App Logo"></img>
 
             <nav className="sidemenu-nav">
                 <ul>
-                    <li className="active"><a href="#"><img src={icons.soccerball}></img> Gerenciar Partidas </a></li>
-                    <li><a href="#"><img src={icons.creditcard}></img> Gerenciar Contas Banc </a></li>
+                    <li className="active"><Link to="/"><img src={icons.soccerball}></img> Gerenciar Partidas </Link></li>
+                    <li><Link to="/account"><img src={icons.creditcard}></img> Gerenciar Contas Banc </Link></li>
                 </ul>
             </nav>
 
