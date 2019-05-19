@@ -1,13 +1,16 @@
 import React, { Component } from "react";
-import icons from "../../../assets/images/index";
+import images from "../../../assets/images/index";
 import SideMenu from "../../../components/Admin/SideMenu";
+import Request from "../../../utils/request";
+import MatchManager from "../../../components/Admin/MatchManager";
+import Modal from "../../../components/Modal";
+import date from "../../../utils/date";
 import "../styles.css";
 
 class MatchesPage extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
     this.tableLayout = [
       "ID",
       "Mandante vs Visitante",
@@ -18,14 +21,83 @@ class MatchesPage extends Component {
       "Peso",
       "Ações"
     ];
+    this.state = {
+      isModalOpen: false,
+      currentModal: null,
+      data: []
+    };
+
+    this.toggleModal = modal => {
+      const { isModalOpen } = this.state;
+      this.setState({ isModalOpen: !isModalOpen, currentModal: modal });
+    };
+
+    this.updateList = () => {
+      const req = new Request();
+      req.getMatches().then(data => this.setState({ data }));
+    };
+
+    this.modifyStateData = obj => {
+      const { data } = this.state;
+      const match = data.findIndex(match => match.cod === obj.cod);
+      if (match !== -1) {
+        data[match] = obj;
+      } else {
+        data.push(obj);
+      }
+      this.setState({ data });
+    };
+
+    this.insertMatch = () => {
+      const modal = (
+        <MatchManager
+          onClose={this.toggleModal}
+          modifyData={this.modifyStateData}
+        />
+      );
+      this.toggleModal(modal);
+    };
+
+    this.updateMatch = match => {
+      const modal = (
+        <MatchManager
+          onClose={this.toggleModal}
+          modifyData={this.modifyStateData}
+          isUpdate={true}
+          originalData={match}
+        />
+      );
+      this.toggleModal(modal);
+    };
+
+    this.deleteMatch = match => {
+      const confirm = window.confirm(
+        "Tem certeza que deseja deletar essa partida? Essa ação é irreversível"
+      );
+      if (confirm) {
+        new Request().deleteMatch(match).then(data => {
+          if (data > 0) {
+            this.updateList();
+            window.alert("Partida removida com sucesso");
+          } else {
+            window.alert("Erro ao remover a partida. 0 linhas alteradas");
+          }
+        });
+      }
+    };
   }
+
+  componentDidMount() {
+    this.updateList();
+  }
+
   render() {
-    console.log(this.props);
+    const { data: matches, isModalOpen, currentModal } = this.state;
     return (
-      <div class="page-content">
+      <div className="page-content">
         <SideMenu />
         <main>
-          <header class="content-header">
+          <header className="content-header">
             <div>
               <h1 className="title">Gerenciar Jogos</h1>
               <span>
@@ -33,34 +105,66 @@ class MatchesPage extends Component {
                 ingressos
               </span>
             </div>
-            <button>Inserir Partida</button>
+            <button onClick={this.insertMatch}>Inserir Partida</button>
           </header>
 
-          <section class="content-data">
+          <section className="content-data">
             <table>
-              <tr>
-                {this.tableLayout.map(item => (
-                  <th key={"th" + item}>{item}</th>
-                ))}
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Corinthians x Palmeiras</td>
-                <td>1 x 0</td>
-                <td>12/05/2019 16:00</td>
-                <td>Itaquera</td>
-                <td>Copa do Brasil</td>
-                <td>4.5</td>
-                <td>
-                  <div className="actions">
-                    <img src={icons.edit} />
-                    <img src={icons.delete} />
-                  </div>
-                </td>
-              </tr>
+              <thead>
+                <tr>
+                  {this.tableLayout.map(item => (
+                    <th key={"th" + item}>{item}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {matches.map(match => {
+                  return (
+                    <tr>
+                      <td>{match.cod}</td>
+                      <td>
+                        {match.nomeMandante} x {match.nomeVisitante}
+                      </td>
+                      <td>
+                        {typeof match.placarMandante === "number"
+                          ? match.placarMandante
+                          : "--"}{" "}
+                        x{" "}
+                        {typeof match.placarVisitante === "number"
+                          ? match.placarVisitante
+                          : "--"}
+                      </td>
+                      <td>{date.formatDate(new Date(match.data))}</td>
+                      <td>{match.estadio}</td>
+                      <td>{match.campeonato}</td>
+                      <td>{match.peso}</td>
+                      <td>
+                        <div className="actions">
+                          <img
+                            src={images.edit}
+                            alt="Editar Partida"
+                            onClick={() => this.updateMatch(match)}
+                          />
+                          <img
+                            src={images.delete}
+                            alt="Deletar Partida"
+                            onClick={() => this.deleteMatch(match.cod)}
+                          />
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
             </table>
           </section>
         </main>
+
+        <Modal
+          isOpen={isModalOpen}
+          onClose={this.toggleModal}
+          content={currentModal}
+        />
       </div>
     );
   }

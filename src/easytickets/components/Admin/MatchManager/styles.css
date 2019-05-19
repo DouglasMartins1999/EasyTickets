@@ -10,6 +10,10 @@
     width: 100%;
     box-sizing: border-box;
     height: 30px;
+    background: #FFF;
+    border: 1px solid #BBB;
+    border-radius: 3px;
+    padding: 0 10px;
 }
 
 #formmanager label {
@@ -22,4 +26,15 @@
     font-weight: 600;
     margin: 0;
     margin-bottom: 20px;
+}
+
+.submit-data {
+    display: flex;
+}
+
+.submit-data .loading {
+    width: 30px;
+    height: 30px;
+    align-self: center;
+    margin-left: 15px;
 }

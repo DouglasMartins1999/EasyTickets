@@ -1,34 +1,17 @@
 import React, { Component } from 'react';
 import "./styles.css"
-import MatchManager from '../Admin/MatchManager';
 
 class Modal extends Component {
-    constructor(props){
-        super(props);
-
-        this.state = {
-            isOpen: true,
-            currentModal: null,
-            options: {}
-        }
-
-        this.toggleModal = e => {
-            const { isOpen } = this.state;
-            this.setState({ isOpen: !isOpen });
-        }
-
-        this.stopPropagation = e => {
-            e.stopPropagation();
-        }
+    stopPropagation(e){
+        e.stopPropagation();
     }
 
     render(){
-        const { isOpen, currentModal, options } = this.state;
+        const { isOpen, content, onClose } = this.props;
         return (isOpen ? 
-        <div className="modal-overlay" onClick={this.toggleModal}>
+        <div className="modal-overlay" onClick={onClose}>
             <section className="modal-content" onClick={this.stopPropagation}>
-                { currentModal }
-                <MatchManager />
+                { content }
             </section>
         </div> : null);
     }

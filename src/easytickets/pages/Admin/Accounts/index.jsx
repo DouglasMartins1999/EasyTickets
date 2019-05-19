@@ -6,6 +6,7 @@ import formatCurrency from "../../../utils/formatCurrency";
 import formatCpf from "../../../utils/formatCpf";
 
 import SideMenu from "../../../components/Admin/SideMenu";
+import Modal from "../../../components/Modal";
 
 class AccountsPage extends Component {
   constructor(props) {
@@ -20,9 +21,22 @@ class AccountsPage extends Component {
       "Saldo",
       "Ações"
     ];
+
+    this.state = {
+      isModalOpen: false,
+      currentModal: null,
+      data: []
+    };
+
+    this.toggleModal = modal => {
+      const { isModalOpen } = this.state;
+      this.setState({ isModalOpen: !isModalOpen, currentModal: modal });
+    };
   }
 
   render() {
+    const { visibleModal, isModalOpen, currentModal } = this.state;
+
     return (
       <div class="page-content">
         <SideMenu />
@@ -34,7 +48,9 @@ class AccountsPage extends Component {
                 Visualizar, Inserir, Atualizar e Remover Contas Bancárias
               </span>
             </div>
-            <button>Inserir Conta Bancária</button>
+            <button onClick={this.showVisibleModal}>
+              Inserir Conta Bancária
+            </button>
           </header>
           <section class="content-data">
             <table>
@@ -59,6 +75,11 @@ class AccountsPage extends Component {
             </table>
           </section>
         </main>
+        <Modal
+          isOpen={isModalOpen}
+          onClose={this.toggleModal}
+          content={currentModal}
+        />
       </div>
     );
   }
