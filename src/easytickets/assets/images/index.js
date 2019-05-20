@@ -11,7 +11,12 @@ const images = {
     edit: require("./edit.svg"),
     delete: require("./delete.svg"),
 
-    loading: require("./loading.gif")
+    loading: require("./loading.gif"),
+    processStep: require("./process-step.svg"),
+
+    soccer: require("./soccer.svg"),
+    checked: require("./checked.svg"),
+
 }
 
 export default images;

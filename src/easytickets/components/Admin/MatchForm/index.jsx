@@ -3,7 +3,7 @@ import Request from '../../../utils/request'
 import images from '../../../assets/images';
 import "./styles.css";
 
-class MatchManager extends Component {
+class MatchForm extends Component {
     constructor(props){
         super(props);
 
@@ -48,7 +48,7 @@ class MatchManager extends Component {
 
     render(){
         const { isUpdate, originalData } = this.props;
-        return <article>
+        return <article className="modal-content">
             <h1 className="modal-title">{ isUpdate ? "Atualizar" : "Inserir" } Partida</h1>
             <form ref={ref => this.form = ref} id="formmanager">
                 <div>
@@ -112,4 +112,4 @@ class MatchManager extends Component {
     }
 }
 
-export default MatchManager;
+export default MatchForm;

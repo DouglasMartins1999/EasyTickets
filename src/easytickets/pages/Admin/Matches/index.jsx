@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import images from "../../../assets/images/index";
 import SideMenu from "../../../components/Admin/SideMenu";
 import Request from "../../../utils/request";
-import MatchManager from "../../../components/Admin/MatchManager";
+import MatchForm from "../../../components/Admin/MatchForm";
 import Modal from "../../../components/Modal";
 import date from "../../../utils/date";
 import "../styles.css";
@@ -50,7 +50,7 @@ class MatchesPage extends Component {
 
     this.insertMatch = () => {
       const modal = (
-        <MatchManager
+        <MatchForm
           onClose={this.toggleModal}
           modifyData={this.modifyStateData}
         />
@@ -60,7 +60,7 @@ class MatchesPage extends Component {
 
     this.updateMatch = match => {
       const modal = (
-        <MatchManager
+        <MatchForm
           onClose={this.toggleModal}
           modifyData={this.modifyStateData}
           isUpdate={true}
