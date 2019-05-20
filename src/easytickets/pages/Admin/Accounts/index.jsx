@@ -7,12 +7,12 @@ import formatCpf from "../../../utils/formatCpf";
 
 import SideMenu from "../../../components/Admin/SideMenu";
 import Modal from "../../../components/Modal";
+import AccountForm from "../../../components/Admin/AccountForm";
 
 class AccountsPage extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
     this.tableLayout = [
       "ID",
       "Agência",
@@ -21,7 +21,6 @@ class AccountsPage extends Component {
       "Saldo",
       "Ações"
     ];
-
     this.state = {
       isModalOpen: false,
       currentModal: null,
@@ -31,6 +30,39 @@ class AccountsPage extends Component {
     this.toggleModal = modal => {
       const { isModalOpen } = this.state;
       this.setState({ isModalOpen: !isModalOpen, currentModal: modal });
+    };
+
+    this.insertMatch = () => {
+      const modal = (
+        <AccountForm
+          onClose={this.toggleModal}
+          modifyData={this.modifyStateData}
+        />
+      );
+      this.toggleModal(modal);
+    };
+
+    this.updateMatch = match => {
+      const modal = (
+        <AccountForm
+          onClose={this.toggleModal}
+          modifyData={this.modifyStateData}
+          isUpdate={true}
+          originalData={match}
+        />
+      );
+      this.toggleModal(modal);
+    };
+
+    this.modifyStateData = obj => {
+      const { data } = this.state;
+      const match = data.findIndex(match => match.cod === obj.cod);
+      if (match !== -1) {
+        data[match] = obj;
+      } else {
+        data.push(obj);
+      }
+      this.setState({ data });
     };
   }
 
@@ -48,7 +80,7 @@ class AccountsPage extends Component {
                 Visualizar, Inserir, Atualizar e Remover Contas Bancárias
               </span>
             </div>
-            <button onClick={this.showVisibleModal}>
+            <button onClick={this.insertMatch}>
               Inserir Conta Bancária
             </button>
           </header>
