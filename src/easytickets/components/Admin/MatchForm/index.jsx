@@ -48,7 +48,7 @@ class MatchForm extends Component {
 
     render(){
         const { isUpdate, originalData } = this.props;
-        return <article>
+        return <article className="modal-content">
             <h1 className="modal-title">{ isUpdate ? "Atualizar" : "Inserir" } Partida</h1>
             <form ref={ref => this.form = ref} id="formmanager">
                 <div>

@@ -17,7 +17,7 @@ class AccountForm extends Component {
     const { isUpdate } = this.props;
 
     return (
-      <article>
+      <article className="modal-content">
         <h1 className="modal-title">
           {isUpdate ? "Atualizar" : "Inserir"} Conta Bancária
         </h1>

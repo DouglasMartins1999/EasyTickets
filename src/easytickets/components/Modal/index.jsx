@@ -10,7 +10,7 @@ class Modal extends Component {
         const { isOpen, content, onClose } = this.props;
         return (isOpen ? 
         <div className="modal-overlay" onClick={onClose}>
-            <section className="modal-content" onClick={this.stopPropagation}>
+            <section className="modal-wrapper" onClick={this.stopPropagation}>
                 { content }
             </section>
         </div> : null);

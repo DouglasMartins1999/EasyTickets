@@ -4,6 +4,7 @@ import "./styles.css"
 import images from '../../../assets/images';
 import MatchCard from '../../../components/Purchase/MatchCard';
 import Modal from '../../../components/Modal';
+import TicketForm from '../../../components/Purchase/TicketForm';
 
 class OrderPage extends Component {
     constructor(props){

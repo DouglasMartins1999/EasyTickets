@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './styles.css'
+import TicketForm from '../TicketForm';
 
 class MatchCard extends Component {
     constructor(props){
@@ -25,7 +26,7 @@ class MatchCard extends Component {
 
         this.preventBubbling = (e) => {
             e.stopPropagation();
-            props.modal();
+            props.modal(<TicketForm/>);
         }
     }
     render(){
