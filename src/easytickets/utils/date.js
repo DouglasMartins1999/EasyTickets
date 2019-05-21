@@ -1,4 +1,5 @@
 class Date {
+    constructor(){}
     formatDate(date = new Date(), isSeparated = false){
         if(isSeparated){
             return {

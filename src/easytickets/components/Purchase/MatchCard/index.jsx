@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './styles.css'
 import TicketForm from '../TicketForm';
+import date from '../../../utils/date';
+import Request from '../../../utils/request';
 
 class MatchCard extends Component {
     constructor(props){
@@ -8,7 +10,8 @@ class MatchCard extends Component {
 
         this.state = {
             isPickerVisible: false,
-            seatAmount: 40
+            seatAmount: 40,
+            seatsUnavaiable: []
         }
 
         this.changeCard = () => {
@@ -20,6 +23,12 @@ class MatchCard extends Component {
             }, 270)
         }
 
+        this.loadTickets = () => {
+            new Request().getSeats(props.match.cod)
+                .then(seats => this.setState({ seatsUnavaiable: seats }));
+
+        }
+
         this.purchaseTicket = (e) => {
             this.preventBubbling(e);
         }
@@ -29,22 +38,29 @@ class MatchCard extends Component {
             props.modal(<TicketForm/>);
         }
     }
+
+    componentDidMount(){
+        this.loadTickets();
+    }
+
     render(){
-        const { isPickerVisible, seatAmount } = this.state;
+        const { isPickerVisible, seatAmount, seatsUnavaiable } = this.state;
         const seats = new Array(seatAmount).fill("");
+        const { campeonato, estadio, data, nomeMandante, nomeVisitante } = this.props.match;
+
         return <div className="card" ref={ref => this.card = ref} onClick={this.changeCard}>
             { !isPickerVisible ? <div>
             <div className="match-info">
-                <span>Campeonato: Brasileirão</span>
+                <span>Campeonato: {campeonato}</span>
                 <div className="teams-info">
-                    <h2>Chapecoense</h2>
+                    <h2>{nomeMandante}</h2>
                     <span>vs</span>
-                    <h2>Corinthians</h2>
+                    <h2>{nomeVisitante}</h2>
                 </div>
-                <span>Arena Condá - 12/06/2019 16:00</span>
+                <span>{estadio} - {date.formatDate(new Date(data))}</span>
             </div>
             <div className="ticket-info">
-                <span>10 ingressos restantes</span>
+                <span>{seatAmount - seatsUnavaiable.length} ingressos restantes</span>
                 <a>Adquirir Agora</a>
             </div></div> :
             <div className="match-info">

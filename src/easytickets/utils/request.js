@@ -25,6 +25,11 @@ class Request {
             method: "DELETE"
         }).then(resp => resp.text());
     }
+
+    getSeats(cod = -1){
+        return fetch(`/ingressos/?partida=${cod}&onlyseats=true`)
+            .then(resp => resp.json());
+    }
 }
 
 module.exports = Request;
