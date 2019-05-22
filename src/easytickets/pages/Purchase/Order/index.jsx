@@ -12,7 +12,7 @@ class OrderPage extends Component {
         super(props);
 
         this.state = {
-            matches: [1],
+            matches: [],
             isModalVisible: false,
             currentModal: null
         }

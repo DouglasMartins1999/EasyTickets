@@ -14,7 +14,7 @@ class AccountForm extends Component {
   }
 
   render() {
-    const { isUpdate } = this.props;
+    const { isUpdate, originalData } = this.props;
 
     return (
       <article className="modal-content">

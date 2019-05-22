@@ -1,39 +1,63 @@
 import React, { Component } from 'react';
+import date from '../../../utils/date';
+import formatCurrency from '../../../utils/formatCurrency';
 import './styles.css'
 
 class TicketForm extends Component {
+    constructor(props){
+        super(props);
+
+        this.state = {}
+
+        this.calcPrice = (weight = props.match.peso) => {
+            let basePrice = 35.0, multiplier = 0, seat = Number(props.seat);
+            if(seat <= 0 || seat > 40) return null;
+
+            if(seat > 32 || seat < 8){
+                multiplier = 1.0;
+            } else if(seat > 24 || seat < 16){
+                multiplier = 1.5;
+            } else {
+                multiplier = 2.0;
+            }
+
+            return basePrice * weight * multiplier;
+        }
+    }
     render(){
+        const { campeonato, estadio, nomeMandante, nomeVisitante, data } = this.props.match;
+        const { seat } = this.props
         return <article className="ticket-form">
             <div className="modal-content">
                 <h1 className="title-details">Comprar Ingresso</h1>
 
                 <div className="teams-info">
-                    <h2>Flamengo</h2>
+                    <h2>{nomeMandante}</h2>
                     <span>vs</span>
-                    <h2>Chapecoense</h2>
+                    <h2>{nomeVisitante}</h2>
                 </div>
 
-                <h1 className="price">R$452,00</h1>
+                <h1 className="price">{formatCurrency(this.calcPrice())}</h1>
 
                 <section className="ticket-details">
                     <div>
                         <h3>Disputando</h3>
-                        <p>Campeonato Brasileirão</p>  
+                        <p>Campeonato {campeonato}</p>  
                     </div>
 
                     <div>
                         <h3>Quando?</h3>
-                        <p>12/06/2019 16:00h</p>
+                        <p>{date.formatDate(new Date(data))}h</p>
                     </div>
 
                     <div>
                         <h3>Onde?</h3>
-                        <p>Estádio Maracanã</p>
+                        <p>Estádio {estadio}</p>
                     </div>
 
                     <div>
                         <h3>Assento Escolhido</h3>
-                        <p>32</p>
+                        <p>{seat}</p>
                     </div>
                 </section>
             </div>

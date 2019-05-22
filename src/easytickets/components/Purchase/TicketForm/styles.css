@@ -4,6 +4,7 @@
 
 .ticket-form .teams-info {
     flex-direction: row;
+    justify-content: flex-start;
 }
 
 .ticket-form h3,
@@ -37,7 +38,8 @@
     font-size: 40px;
     font-weight: 200;
     margin: 0;
-    line-height: 1.5
+    line-height: 1.4;
+    margin-bottom: 30px;
 }
 
 .purchase-info {
@@ -51,6 +53,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-top: 20px;
+    column-gap: 30px;
 }
 
 .wide-button {

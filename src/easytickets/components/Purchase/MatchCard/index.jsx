@@ -29,13 +29,13 @@ class MatchCard extends Component {
 
         }
 
-        this.purchaseTicket = (e) => {
+        this.purchaseTicket = (e, seat) => {
             this.preventBubbling(e);
+            props.modal(<TicketForm match={props.match} seat={seat}/>);
         }
 
         this.preventBubbling = (e) => {
             e.stopPropagation();
-            props.modal(<TicketForm/>);
         }
     }
 
@@ -66,7 +66,7 @@ class MatchCard extends Component {
             <div className="match-info">
                 <span>Escolha um assento</span>
                 <div className="sit-picker">
-                    {seats.map((sit, i) => <button className="sit-number" onClick={this.purchaseTicket}>{i + 1}</button>)}
+                    {seats.map((sit, i) => <button className={"sit-number" + (seatsUnavaiable.includes(i + 1) ? " inactive" : "")} onClick={(e) => !seatsUnavaiable.includes(i + 1) ? this.purchaseTicket(e, i + 1) : this.preventBubbling(e)}>{i + 1}</button>)}
                 </div>
             </div>}
         </div>;
