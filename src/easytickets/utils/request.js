@@ -80,6 +80,16 @@ class Request {
       headers: { "Content-Type": "application/json" }
     }).then(resp => resp.json());
   }
+
+  getTicket(id = 0){
+    return fetch(`/ingressos/${id}`)
+      .then(resp => resp.json())
+  }
+
+  getAccount(cod = 0){
+    return fetch(`/contas/${cod}`)
+      .then(resp => resp.json())
+  }
 }
 
 module.exports = Request;

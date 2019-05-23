@@ -54,6 +54,7 @@ class TicketForm extends Component {
                     } else {
                         req.generateTicket(props.matchInfo.cod, seat, account)
                             .then(ticket => {
+                                console.log(ticket)
                                 alert("Ingresso Emitido com Sucesso")
                                 props.modal(null);
                                 props.history.push(`/ticket?id=${ticket.cod}`)

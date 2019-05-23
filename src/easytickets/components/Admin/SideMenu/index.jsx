@@ -11,13 +11,7 @@ class SideMenu extends Component {
         super(props);
 
         this.state = {
-            nextState: {
-                nomeMandante: "",
-                nomeVisitante: "",
-                data: new Date().getTime(),
-                estadio: "",
-                campeonato: "",
-            }
+            nextState: undefined
         }
 
         this.getNextMatch = () => {

@@ -4,7 +4,7 @@ import images from '../../../assets/images';
 
 class Header extends Component {
     render(){
-        const { isDataEditing } =this.props;
+        const { isDataEditing, fullfill } =this.props;
         return <header className="purchase-header">
             <div className="page-info">
                 <img src={images.logo} />
@@ -23,7 +23,7 @@ class Header extends Component {
                     <span>Inserir Dados</span>
                 </a>
 
-                <a className="purchase-step inactive">
+                <a className={"purchase-step" + (!fullfill ? " inactive" : "")}>
                     <img src={images.processStep} />
                     <span>Concluído</span>
                 </a>
