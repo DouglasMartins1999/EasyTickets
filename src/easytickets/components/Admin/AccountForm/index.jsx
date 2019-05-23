@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Request from "../../../utils/request";
 
 import images from "../../../assets/images";
 
@@ -10,7 +11,35 @@ class AccountForm extends Component {
       isLoading: false
     };
 
-    this.handleSubmit = () => {};
+    this.handleSubmit = e => {
+      let { isUpdate, originalData: d } = props;
+      let formdata = new FormData(this.form),
+        obj = {},
+        req = new Request();
+
+      e.preventDefault();
+      this.setState({ isLoading: true });
+      formdata.forEach((data, key) => (obj[key] = data));
+
+      if (isUpdate) {
+        req.editAccount(d.cod, JSON.stringify(obj)).then(data => {
+          if (+data > 0) {
+            alert("Conta Atualizada");
+            obj.cod = d.cod;
+            this.props.modifyData(obj);
+            this.props.onClose();
+          }
+        });
+      } else {
+        req.postAccount(JSON.stringify(obj)).then(data => {
+          if (data) {
+            alert("Conta Inserida");
+            this.props.modifyData(data);
+            this.props.onClose();
+          }
+        });
+      }
+    };
   }
 
   render() {
@@ -41,7 +70,7 @@ class AccountForm extends Component {
               type="text"
               name="titular"
               id="titular"
-              defaultValue={""}
+              defaultValue={originalData ? originalData.nomeTitular : ""}
               required={true}
             />
           </div>
@@ -53,7 +82,7 @@ class AccountForm extends Component {
               type="text"
               name="cpf"
               id="cpf"
-              defaultValue={""}
+              defaultValue={originalData ? originalData.cpf : ""}
               required="true"
             />
           </div>
@@ -66,7 +95,7 @@ class AccountForm extends Component {
               name="saldo"
               id="saldo"
               min="0"
-              defaultValue={""}
+              defaultValue={originalData ? originalData.saldo : ""}
             />
           </div>
 
