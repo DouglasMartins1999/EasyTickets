@@ -30,6 +30,27 @@ class Request {
         return fetch(`/ingressos/?partida=${cod}&onlyseats=true`)
             .then(resp => resp.json());
     }
+
+    getAccounts(cpf = 0){
+        return fetch(`/contas/cliente/${cpf}`)
+            .then(resp => resp.json());
+    }
+
+    processTransaction(account = "0", value = 0, pswd = ""){
+        return fetch(`/contas/${account}/saldo`, {
+            method: 'PUT',
+            body: JSON.stringify({ transacao: value, senha: pswd }),
+            headers: { 'Content-Type': 'application/json' }
+        }).then(resp => resp.text())
+    }
+
+    generateTicket(matchID = 0, seat = 0, owner = 0){
+        return fetch(`/ingressos`, {
+            method: "POST",
+            body: JSON.stringify({ partida: matchID, assento: seat, comprador: owner }),
+            headers: { 'Content-Type': 'application/json' }
+        }).then(resp => resp.json())
+    }
 }
 
 module.exports = Request;

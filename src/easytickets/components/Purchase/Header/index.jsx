@@ -4,6 +4,7 @@ import images from '../../../assets/images';
 
 class Header extends Component {
     render(){
+        const { isDataEditing } =this.props;
         return <header className="purchase-header">
             <div className="page-info">
                 <img src={images.logo} />
@@ -17,7 +18,7 @@ class Header extends Component {
                     <span>Selecionar Partida</span>
                 </a>
 
-                <a className="purchase-step inactive">
+                <a className={"purchase-step" + (!isDataEditing ? " inactive" : "")}>
                     <img src={images.processStep} />
                     <span>Inserir Dados</span>
                 </a>

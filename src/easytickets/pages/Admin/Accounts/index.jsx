@@ -95,7 +95,7 @@ class AccountsPage extends Component {
                 <td>1</td>
                 <td>Bradesco</td>
                 <td>João Alves da Silva</td>
-                <td>{formatCpf("72141266050")}</td>
+                <td>{formatCpf.toString(72141266050)}</td>
                 <td>{formatCurrency(800)}</td>
                 <td>
                   <div className="actions">
