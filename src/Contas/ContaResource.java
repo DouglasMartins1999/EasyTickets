@@ -25,6 +25,18 @@ public class ContaResource {
         return dao.read();
     }
     
+    @GET
+    @Path("{cpf}")
+    public ArrayList<Conta> readCPF(@PathParam("cpf") long cpf){
+        return dao.readByCPF(cpf);
+    }
+
+    @POST
+    @Path("{conta}/saldo")
+    public float readSaldo(@PathParam("conta") int conta, int senha){
+        return dao.readSaldo(conta, senha);
+    }
+    
     @POST
     public Conta insert(Conta c) {
         return dao.create(c);
@@ -36,6 +48,16 @@ public class ContaResource {
         int i = (int)id.get().longValue();
         return dao.update(c, i);
     }
+    
+    @PUT
+    @Path("{id}/saldo")
+    public int updateSaldo(@PathParam("id") LongParam id, Transacao t){
+        int i = (int)id.get().longValue();
+        float saldoAtual = dao.readSaldo(i, t.getSenha());
+        float novoSaldo = saldoAtual + t.getTransacao();
+        return dao.updateSaldo(i, novoSaldo);
+    }
+    
     @DELETE
     @Path("{id}")
     public int remove(@PathParam("id") LongParam id) {

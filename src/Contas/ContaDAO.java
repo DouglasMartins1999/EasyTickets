@@ -15,7 +15,10 @@ public class ContaDAO {
 
     private PreparedStatement stmCreate;
     private PreparedStatement stmRead;
+    private PreparedStatement stmReadByCPF;
+    private PreparedStatement stmReadSaldo;
     private PreparedStatement stmUpdate;
+    private PreparedStatement stmUpdateSaldo;
     private PreparedStatement stmDelete;
 
     public ContaDAO() {
@@ -27,10 +30,15 @@ public class ContaDAO {
 
             this.connection = DriverManager.getConnection(url, user, pswd);
 
-            this.stmCreate = this.connection.prepareStatement("INSERT INTO Contas (agencia, nome_titular, cpf, saldo, senha) VALUES(?, ?, ?, ?, ? )", Statement.RETURN_GENERATED_KEYS);
+            this.stmCreate = this.connection.prepareStatement("INSERT INTO Contas (agencia, nome_titular, CPF, saldo, senha) VALUES(?, ?, ?, ?, ? )", Statement.RETURN_GENERATED_KEYS);
             this.stmRead = this.connection.prepareStatement("SELECT * FROM Contas");
-            this.stmUpdate = this.connection.prepareStatement("UPDATE Contas SET agencia=?, nome_titular=?, cpf=?, saldo=?, senha=? WHERE conta=? ");
+            this.stmUpdate = this.connection.prepareStatement("UPDATE Contas SET agencia=?, nome_titular=?, CPF=?, saldo=?, senha=? WHERE conta=? ");
             this.stmDelete = this.connection.prepareStatement("DELETE FROM Contas WHERE conta=?");
+            
+            this.stmReadByCPF = this.connection.prepareStatement("SELECT nome_titular, conta, agencia FROM Contas WHERE CPF = ?");
+            this.stmReadSaldo = this.connection.prepareStatement("SELECT saldo FROM Contas WHERE conta = ? AND senha = ?");
+            this.stmUpdateSaldo = this.connection.prepareStatement("UPDATE Contas SET saldo=? WHERE conta = ?");
+            
         } catch (Exception e) {
             System.out.println("Ocorreu um erro" + e.getMessage());
             e.printStackTrace();
@@ -54,12 +62,12 @@ public class ContaDAO {
             while (r.next()) {
                 Conta c = new Conta();
 
-                c.setCod(r.getInt("id"));
+                c.setCod(r.getInt("conta"));
                 c.setAgencia(r.getInt("agencia"));
-                c.setCpf(r.getInt("cpf"));
-                c.setNomeTitular(r.getString("nomeTitular"));
+                c.setCpf(r.getLong("CPF"));
+                c.setNomeTitular(r.getString("nome_titular"));
                 c.setSaldo(r.getFloat("saldo"));
-                c.setSenha(r.getString("Senha"));
+                c.setSenha(r.getInt("Senha"));
 
                 contas.add(c);
             }
@@ -73,11 +81,11 @@ public class ContaDAO {
 
     public Conta create(Conta c) {
         try {
-            this.stmCreate.setString(1, c.getNomeTitular());
-            this.stmCreate.setInt(2, c.getAgencia());
-            this.stmCreate.setInt(3, c.getCpf());
+            this.stmCreate.setString(2, c.getNomeTitular());
+            this.stmCreate.setInt(1, c.getAgencia());
+            this.stmCreate.setLong(3, c.getCpf());
             this.stmCreate.setFloat(4, c.getSaldo());
-            this.stmCreate.setString(5, c.getSenha());
+            this.stmCreate.setInt(5, c.getSenha());
 
             this.stmCreate.executeUpdate();
             ResultSet r = this.stmCreate.getGeneratedKeys();
@@ -95,13 +103,16 @@ public class ContaDAO {
 
     public int update(Conta c, int id) {
         try {
-            this.stmCreate.setInt(1, c.getAgencia());
-            this.stmCreate.setString(2, c.getNomeTitular());
-            this.stmCreate.setInt(3, c.getCpf());
-            this.stmCreate.setFloat(4, c.getSaldo());
-            this.stmCreate.setString(5, c.getSenha());
+            this.stmUpdate.setInt(1, c.getAgencia());
+            this.stmUpdate.setString(2, c.getNomeTitular());
+            this.stmUpdate.setLong(3, c.getCpf());
+            this.stmUpdate.setFloat(4, c.getSaldo());
+            this.stmUpdate.setInt(5, c.getSenha());
+            
+            this.stmUpdate.setInt(6, id);
 
             int changed = this.stmUpdate.executeUpdate();
+            return changed;
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             e.printStackTrace();
@@ -116,6 +127,58 @@ public class ContaDAO {
             return removed;
         } catch(Exception e) {
             System.out.println("Ocorreu: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    
+    public ArrayList<Conta> readByCPF(long cpf){
+        try {
+            ArrayList<Conta> contas = new ArrayList();
+            this.stmReadByCPF.setLong(1, cpf);
+            ResultSet r = this.stmReadByCPF.executeQuery();
+
+            while (r.next()) {
+                Conta c = new Conta();
+
+                c.setCod(r.getInt("conta"));
+                c.setAgencia(r.getInt("agencia"));
+                c.setCpf(cpf);
+                c.setNomeTitular(r.getString("nome_titular"));
+
+                contas.add(c);
+            }
+            return contas;
+        } catch (Exception e){
+            System.out.println("Erro:" + e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public float readSaldo(int conta, int senha){
+        try {
+            this.stmReadSaldo.setInt(1, conta);
+            this.stmReadSaldo.setInt(2, senha);
+            ResultSet r = this.stmReadSaldo.executeQuery();
+            r.next();
+            
+            return r.getFloat("saldo");
+        } catch (Exception e){
+            System.out.println("Erro:" + e.getMessage());
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    
+    public int updateSaldo(int conta, float novoSaldo){
+        try {
+            this.stmUpdateSaldo.setFloat(1, novoSaldo);
+            this.stmUpdateSaldo.setInt(2, conta);
+            
+            return this.stmUpdateSaldo.executeUpdate();
+        } catch (Exception e){
+            System.out.println("Erro:" + e.getMessage());
             e.printStackTrace();
         }
         return 0;

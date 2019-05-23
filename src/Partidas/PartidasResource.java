@@ -21,7 +21,7 @@ public class PartidasResource {
     
     @GET
     @Path("{id}")
-    public Partida readOne(@PathParam("id") LongParam id, Partida p){
+    public Partida readOne(@PathParam("id") LongParam id){
         int i = (int)id.get().longValue();
         return dao.read(i);
     }

@@ -14,14 +14,14 @@ public class Conta {
     private int cod;
     private int agencia;
     private String nomeTitular;
-    private int cpf;
+    private long cpf;
     private float saldo;
-    private String senha;
+    private int senha;
 
     public Conta() {
     }
 
-    public Conta(int agencia, String nomeTiTular, int cpf, float saldo, String senha) {
+    public Conta(int agencia, String nomeTiTular, long cpf, float saldo, int senha) {
         this.agencia = agencia;
         this.nomeTitular = nomeTiTular;
         this.cpf = cpf;
@@ -37,7 +37,7 @@ public class Conta {
         return cod;
     }
 
-    public int getCpf() {
+    public long getCpf() {
         return cpf;
     }
 
@@ -49,7 +49,7 @@ public class Conta {
         return saldo;
     }
 
-    public String getSenha() {
+    public int getSenha() {
         return senha;
     }
 
@@ -65,11 +65,11 @@ public class Conta {
         this.nomeTitular = nomeTitular;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(long cpf) {
         this.cpf = cpf;
     }
 
-    public void setSenha(String senha) {
+    public void setSenha(int senha) {
         this.senha = senha;
     }
 
