@@ -26,11 +26,17 @@ public class ContaResource {
     }
     
     @GET
-    @Path("{cpf}")
+    @Path("cliente/{cpf}")
     public ArrayList<Conta> readCPF(@PathParam("cpf") long cpf){
         return dao.readByCPF(cpf);
     }
 
+    @GET
+    @Path("{conta}")
+    public Conta readByConta(@PathParam("conta") int conta){
+        return dao.readByConta(conta);
+    }
+    
     @POST
     @Path("{conta}/saldo")
     public float readSaldo(@PathParam("conta") int conta, int senha){

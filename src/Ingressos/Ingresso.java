@@ -6,6 +6,7 @@ public class Ingresso {
     private int cod;
     private Partida partida;
     private int assento;
+    private int comprador;
     private double precoBase = 35.0;
     
     public Ingresso(){}
@@ -19,6 +20,14 @@ public class Ingresso {
         PartidasDAO dao = new PartidasDAO();
         this.partida = dao.read(p);
         this.assento = a;
+        dao.close();
+    }
+    
+    public Ingresso(int p, int a, int c){
+        PartidasDAO dao = new PartidasDAO();
+        this.partida = dao.read(p);
+        this.assento = a;
+        this.comprador = c;
         dao.close();
     }
     
@@ -39,9 +48,11 @@ public class Ingresso {
     public int getCod(){ return cod; }
     public Partida getPartida(){ return partida; }
     public int getAssento(){ return assento; }
+    public int getComprador(){ return comprador; }
  
     public void setCod(int cod){ this.cod = cod; }
     public void setAssento(int a){ this.assento = a; }
+    public void setComprador(int c){ this.comprador = c; }
     public void setPartida(Partida p){ this.partida = p; }
     public void setPartida(int p){
         PartidasDAO dao = new PartidasDAO();

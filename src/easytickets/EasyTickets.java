@@ -1,9 +1,5 @@
 package easytickets;
 
-/**
- *
- * @author Douglas
- */
 import Partidas.*;
 import Ingressos.*;
 import Contas.*;

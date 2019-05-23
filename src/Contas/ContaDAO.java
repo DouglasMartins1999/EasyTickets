@@ -17,6 +17,7 @@ public class ContaDAO {
     private PreparedStatement stmRead;
     private PreparedStatement stmReadByCPF;
     private PreparedStatement stmReadSaldo;
+    private PreparedStatement stmReadByConta;
     private PreparedStatement stmUpdate;
     private PreparedStatement stmUpdateSaldo;
     private PreparedStatement stmDelete;
@@ -38,6 +39,7 @@ public class ContaDAO {
             this.stmReadByCPF = this.connection.prepareStatement("SELECT nome_titular, conta, agencia FROM Contas WHERE CPF = ?");
             this.stmReadSaldo = this.connection.prepareStatement("SELECT saldo FROM Contas WHERE conta = ? AND senha = ?");
             this.stmUpdateSaldo = this.connection.prepareStatement("UPDATE Contas SET saldo=? WHERE conta = ?");
+            this.stmReadByConta = this.connection.prepareStatement("SELECT nome_titular, CPF, agencia FROM Contas WHERE conta = ?");
             
         } catch (Exception e) {
             System.out.println("Ocorreu um erro" + e.getMessage());
@@ -173,6 +175,7 @@ public class ContaDAO {
     
     public int updateSaldo(int conta, float novoSaldo){
         try {
+            if(novoSaldo < 0){ return -1; };
             this.stmUpdateSaldo.setFloat(1, novoSaldo);
             this.stmUpdateSaldo.setInt(2, conta);
             
@@ -182,5 +185,24 @@ public class ContaDAO {
             e.printStackTrace();
         }
         return 0;
+    }
+    
+    public Conta readByConta(int conta){
+        try {
+            this.stmReadByConta.setInt(1, conta);
+            ResultSet r = this.stmReadByConta.executeQuery();
+            r.next();
+                    
+            Conta c = new Conta();
+            c.setAgencia(r.getInt("agencia"));
+            c.setNomeTitular(r.getString("nome_titular"));
+            c.setCpf(r.getLong("CPF"));
+            
+            return c;
+        } catch(Exception e){
+            System.out.println("Erro:" + e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
     }
 }

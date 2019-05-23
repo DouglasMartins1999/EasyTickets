@@ -22,7 +22,7 @@ public class IngressoDAO {
             
             this.conn = DriverManager.getConnection(url, user, pswd);
             
-            this.stmCreate = this.conn.prepareStatement("INSERT INTO Ingressos (partida, assento, preco) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            this.stmCreate = this.conn.prepareStatement("INSERT INTO Ingressos (partida, assento, preco, comprador) VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             this.stmReadByPartida = this.conn.prepareStatement("SELECT * FROM Ingressos WHERE partida = ?");
             this.stmReadOne = this.conn.prepareStatement("SELECT * FROM Ingressos WHERE codigo = ?");
             
@@ -46,6 +46,7 @@ public class IngressoDAO {
             this.stmCreate.setInt(1, i.getPartida().getCod());
             this.stmCreate.setInt(2, i.getAssento());
             this.stmCreate.setDouble(3, i.calcularTotal());
+            this.stmCreate.setInt(4, i.getComprador());
             
             this.stmCreate.executeUpdate();
             ResultSet r = this.stmCreate.getGeneratedKeys();
