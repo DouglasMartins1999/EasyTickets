@@ -37,7 +37,7 @@ class OrderPage extends Component {
     render(){
         const { matches, isModalVisible, currentModal } = this.state;
         return <section>
-            <Header isDataEditing={isModalVisible}/>
+            <Header />
             <main className="purchase-content">
                 <div className="page-header">
                     <div className="page-title">

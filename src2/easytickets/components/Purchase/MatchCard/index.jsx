@@ -31,7 +31,7 @@ class MatchCard extends Component {
 
         this.purchaseTicket = (e, seat) => {
             this.preventBubbling(e);
-            props.modal(<TicketForm matchInfo={props.match} seat={seat} modal={props.modal}/>);
+            props.modal(<TicketForm match={props.match} seat={seat}/>);
         }
 
         this.preventBubbling = (e) => {
