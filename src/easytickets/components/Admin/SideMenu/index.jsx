@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import icons from '../../../assets/images/index';
 import Request from '../../../utils/request';
@@ -46,8 +46,8 @@ class SideMenu extends Component {
 
             <nav className="sidemenu-nav">
                 <ul>
-                    <li><NavLink to="/"><img src={icons.soccerball}></img> Gerenciar Partidas </NavLink></li>
-                    <li><NavLink to="/account"><img src={icons.creditcard}></img> Gerenciar Contas Banc </NavLink></li>
+                    <li><Link to="/"><img src={icons.soccerball}></img> Gerenciar Partidas </Link></li>
+                    <li><Link to="/account"><img src={icons.creditcard}></img> Gerenciar Contas Banc </Link></li>
                 </ul>
             </nav>
 
