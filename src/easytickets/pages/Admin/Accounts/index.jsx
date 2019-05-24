@@ -131,7 +131,7 @@ class AccountsPage extends Component {
                       <td>{account.agencia}</td>
                       <td>{account.nomeTitular}</td>
                       <td>{formatCpf.toString(account.cpf)}</td>
-                      <td>{formatCurrency(800)}</td>
+                      <td>{formatCurrency(account.saldo)}</td>
                       <td>
                         <div className="actions">
                           <img

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 import icons from '../../../assets/images/index';
 import Request from '../../../utils/request';
@@ -11,13 +11,7 @@ class SideMenu extends Component {
         super(props);
 
         this.state = {
-            nextState: {
-                nomeMandante: "",
-                nomeVisitante: "",
-                data: new Date().getTime(),
-                estadio: "",
-                campeonato: "",
-            }
+            nextState: undefined
         }
 
         this.getNextMatch = () => {
@@ -46,14 +40,14 @@ class SideMenu extends Component {
 
     render(){
         const { nextState } = this.state;
-        console.log(this.props);
+
         return <aside>
             <img src={icons.logo} className="logo" alt="App Logo"></img>
 
             <nav className="sidemenu-nav">
                 <ul>
-                    <li className="active"><Link to="/"><img src={icons.soccerball}></img> Gerenciar Partidas </Link></li>
-                    <li><Link to="/account"><img src={icons.creditcard}></img> Gerenciar Contas Banc </Link></li>
+                    <li><NavLink to="/"><img src={icons.soccerball}></img> Gerenciar Partidas </NavLink></li>
+                    <li><NavLink to="/account"><img src={icons.creditcard}></img> Gerenciar Contas Banc </NavLink></li>
                 </ul>
             </nav>
 
@@ -80,4 +74,4 @@ class SideMenu extends Component {
     }
 }
 
-export default SideMenu;
+export default withRouter(SideMenu);

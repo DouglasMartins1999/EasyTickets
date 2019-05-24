@@ -69,6 +69,14 @@ class Request {
     }).then(resp => resp.text());
   }
 
+  getTicket(id = 0) {
+    return fetch(`/ingressos/${id}`).then((response) => response.json());
+  }
+
+  getAccount(cod = 0) {
+    return fetch(`/contas/${cod}`).then((response) => response.json());
+  }
+
   generateTicket(matchID = 0, seat = 0, owner = 0) {
     return fetch(`/ingressos`, {
       method: "POST",

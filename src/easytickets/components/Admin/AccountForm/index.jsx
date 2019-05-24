@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
 import Request from "../../../utils/request";
+
 import CPF from "../../../utils/formatCpf";
 
 import images from "../../../assets/images";
